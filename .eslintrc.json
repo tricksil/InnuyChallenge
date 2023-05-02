@@ -1,0 +1,38 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "react-native": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "standard-with-typescript",
+    "prettier",
+    "plugin:react/recommended"
+  ],
+  "root": true,
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "prettier", "import"],
+  "rules": {
+    "import/no-unresolved": 0,
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "prefer-const": "off"
+  }
+}
