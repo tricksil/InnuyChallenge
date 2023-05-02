@@ -1,3 +1,5 @@
+import { LocationModel } from '@/domain/models';
+
 export interface FindCurrentPosition {
-  coords: () => Promise<void>;
+  coords: () => Promise<LocationModel>;
 }
