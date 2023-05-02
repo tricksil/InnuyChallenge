@@ -1,13 +1,36 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import styles from './styles';
+import { FindCurrentPosition } from '@/domain/usecases';
 
-const Home: React.FC = () => {
+type Props = {
+  findCurrentPosition: FindCurrentPosition;
+};
+
+const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
   const [state, setState] = useState({
     latitude: '',
     longitude: '',
   });
+
+  const getCurrentLocationPress = async () => {
+    try {
+      const coords = await findCurrentPosition.coords();
+      setState({
+        latitude: coords.latitude.toString(),
+        longitude: coords.longitude.toString(),
+      });
+    } catch (error) {
+      if (error instanceof Error) Alert.alert('Ops', error.message);
+    }
+  };
 
   const stateChange = (fieldName: string, value: string): void => {
     const regex = /^[0-9.-]+$/;
@@ -42,7 +65,7 @@ const Home: React.FC = () => {
           contextMenuHidden={true}
         />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={getCurrentLocationPress}>
           <Text>Get current Location</Text>
         </TouchableOpacity>
       </SafeAreaView>
