@@ -47,7 +47,7 @@ const Home: React.FC = () => {
         </TouchableOpacity>
       </SafeAreaView>
       <TouchableOpacity style={styles.buttonNext}>
-        <Text style={styles.text}>View in Maps</Text>
+        <Text style={styles.text}>Check on the map</Text>
       </TouchableOpacity>
     </>
   );
