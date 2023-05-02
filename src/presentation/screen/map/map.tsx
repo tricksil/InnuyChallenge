@@ -11,7 +11,6 @@ const Map: React.FC = () => {
 
   const getPosition = (regionParams: any): void => {
     if (regionParams) {
-      console.log(regionParams);
       setRegion({
         latitude: regionParams.latitude,
         longitude: regionParams.longitude,

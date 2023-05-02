@@ -51,6 +51,10 @@ const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
         latitude: Number(state.latitude),
         longitude: Number(state.longitude),
       });
+      setState({
+        latitude: '',
+        longitude: '',
+      });
     }
   };
 
