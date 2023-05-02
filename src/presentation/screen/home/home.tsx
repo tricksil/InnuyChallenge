@@ -46,7 +46,12 @@ const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
   };
 
   const viewMapPress = () => {
-    navigation.navigate('Map');
+    if (state.latitude && state.longitude) {
+      navigation.navigate('Map', {
+        latitude: Number(state.latitude),
+        longitude: Number(state.longitude),
+      });
+    }
   };
 
   return (

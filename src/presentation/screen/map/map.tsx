@@ -1,30 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import MapView, { Callout, Marker } from 'react-native-maps';
+import MapView, { Callout, Marker, Region } from 'react-native-maps';
 import styles from './styles';
-
-const initialRegion = {
-  latitude: -4.983037,
-  longitude: -39.015199,
-  latitudeDelta: 0.009,
-  longitudeDelta: 0.009,
-};
+import { useRoute } from '@react-navigation/native';
 
 const Map: React.FC = () => {
+  const route = useRoute();
+  const [region, setRegion] = useState<Region>();
+
+  const getPosition = (regionParams: any): void => {
+    if (regionParams) {
+      console.log(regionParams);
+      setRegion({
+        latitude: regionParams.latitude,
+        longitude: regionParams.longitude,
+        latitudeDelta: 0.001,
+        longitudeDelta: 0.001,
+      });
+    }
+  };
+
+  useEffect(() => {
+    getPosition(route?.params);
+  }, [route?.params]);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <MapView
         style={styles.map}
-        initialRegion={initialRegion}
-        showsUserLocation={true}
+        region={region}
         zoomEnabled={false}
+        scrollEnabled={false}
       >
         <Marker
           coordinate={{
-            latitude: initialRegion.latitude,
-            longitude: initialRegion.longitude,
+            latitude: Number(region?.latitude),
+            longitude: Number(region?.longitude),
           }}
         >
           <Callout>
