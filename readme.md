@@ -9,7 +9,9 @@
 
 In the project directory, you can run:
 
-### `npm ci && npm run android`
+First `npm ci` to install dependencies
+
+Second `npm run android` or `npm run ios` to run the project
 
 > ## Principles
 
