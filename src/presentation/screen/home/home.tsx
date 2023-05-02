@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import styles from './styles';
 import { FindCurrentPosition } from '@/domain/usecases';
 
@@ -15,6 +18,7 @@ type Props = {
 };
 
 const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [state, setState] = useState({
     latitude: '',
     longitude: '',
@@ -40,6 +44,11 @@ const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
         [fieldName]: value,
       });
   };
+
+  const viewMapPress = () => {
+    navigation.navigate('Map');
+  };
+
   return (
     <>
       <SafeAreaView style={styles.container} removeClippedSubviews={true}>
@@ -69,7 +78,7 @@ const Home: React.FC<Props> = ({ findCurrentPosition }: Props) => {
           <Text>Get current Location</Text>
         </TouchableOpacity>
       </SafeAreaView>
-      <TouchableOpacity style={styles.buttonNext}>
+      <TouchableOpacity style={styles.buttonNext} onPress={viewMapPress}>
         <Text style={styles.text}>Check on the map</Text>
       </TouchableOpacity>
     </>
